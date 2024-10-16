@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.category-page {
+  background-color: #38323a;
+}
+
+.category-title {
+  color: #b59bbe;
+}
