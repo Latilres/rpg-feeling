@@ -1,0 +1,9 @@
+{
+  "appId": "com.therese-T.rpg-feeling",
+  "files": ["dist-electron", "dist-react"],
+  "extraResources": ["dist-electron/preload.cjs"],
+  "icon": "./desktopIcon.png",
+  "win": {
+    "target": ["portable"]
+  }
+}

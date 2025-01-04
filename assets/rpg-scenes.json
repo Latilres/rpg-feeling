@@ -1,0 +1,16 @@
+{
+  "genre": {
+    "name": "Fantasy",
+    "scenes": [
+      {
+        "name": "Traveling"
+      },
+      {
+        "name": "The Druids Home"
+      },
+      {
+        "name": "Silvershore"
+      }
+    ]
+  }
+}
