@@ -11,8 +11,6 @@ const ScenePage = ({ scenes }: Props) => {
     ));
   };
 
-  getScenes();
-
   return (
     <div>
       <SceneButton key="0" buttonText="Create" />
