@@ -1,7 +1,8 @@
-const electron = require("electron");
+const { ipcRenderer, contextBridge } = require("electron");
 
-electron.contextBridge.exposeInMainWorld("electron", {
+contextBridge.exposeInMainWorld("electron", {
   subscribeStatistics: (callback: (statistics: any) => void) => callback({}),
-  getStaticData: () => electron.ipcRenderer.invoke("getStaticData"),
-  woop: () => electron.ipcRenderer.invoke("woop"),
+  getScenes: () => ipcRenderer.invoke("getScenes"),
+  createScene: (newScene: string) =>
+    ipcRenderer.invoke("createScene", newScene),
 });

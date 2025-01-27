@@ -11,7 +11,7 @@ type scene = {
 
 interface Window {
   electron: {
-    woop: () => Promise<rpgScenes>;
-    getStaticData: () => string;
+    getScenes: () => Promise<rpgScenes>;
+    createScene: (newScene: string) => Promise<rpgScenes>;
   };
 }

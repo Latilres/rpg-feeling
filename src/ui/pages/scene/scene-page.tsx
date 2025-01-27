@@ -2,9 +2,10 @@ import SceneButton from "./scene-button";
 
 type Props = {
   scenes: scene[];
+  createScene: (newScene: string) => void;
 };
 
-const ScenePage = ({ scenes }: Props) => {
+const ScenePage = ({ scenes, createScene }: Props) => {
   const getScenes = () => {
     return scenes.map((scene: scene, index: number) => (
       <SceneButton key={index + 1} buttonText={scene.name} />
@@ -13,7 +14,7 @@ const ScenePage = ({ scenes }: Props) => {
 
   return (
     <div>
-      <SceneButton key="0" buttonText="Create" />
+      <SceneButton key="0" buttonText="Create" createScene={createScene} />
       {getScenes()}
     </div>
   );

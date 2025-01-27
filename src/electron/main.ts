@@ -1,4 +1,4 @@
-import { app, BrowserWindow, ipcMain } from "electron";
+import { app, BrowserWindow, dialog, ipcMain } from "electron";
 import path from "path";
 import { isDev } from "./util.js";
 import fs from "fs";
@@ -16,7 +16,7 @@ app.on("ready", () => {
     },
   });
   if (isDev()) {
-    mainWindow.loadURL("http:localhost:5123");
+    mainWindow.loadURL("http:localhost:3000");
 
     // Open the DevTools.
     mainWindow.webContents.openDevTools();
@@ -24,17 +24,35 @@ app.on("ready", () => {
     mainWindow.loadFile(path.join(app.getAppPath() + "/dist-react/index.html"));
   }
 
-  ipcMain.handle("woop", () => {
-    const filePath = path.join(app.getAppPath() + "/assets/rpg-scenes.json");
-    const woopie = fs.readFileSync(filePath, "utf-8");
-    // console.log(woopie);
-    // console.log(JSON.parse(woopie));
-    return JSON.parse(woopie);
+  const newSceneDialog = new BrowserWindow({
+    parent: mainWindow,
+    modal: true,
+    show: false,
   });
 
-  ipcMain.handle("getStaticData", () => {
-    return "data from electron to FE";
+  ipcMain.handle("createScene", (_, newScene) => {
+    const filePath = path.join(app.getAppPath() + "/assets/rpg-scenes.json");
+    const scenes = JSON.parse(fs.readFileSync(filePath, "utf-8"));
+
+    console.log(app.getAppPath());
+
+    // scenes.genre.scenes.push({ name: newScene });
+    // fs.writeFile(filePath, JSON.stringify(scenes), (err) => {
+    //   if (err) throw err;
+    //   console.log("The file has been saved!");
+    // });
+    // return scenes;
+    // console.log(scenes);
+    // console.log(scenes.genre.scenes[3]);
+    // scenes.genre.scenes[]
   });
+});
+
+ipcMain.handle("getScenes", () => {
+  const filePath = path.join(app.getAppPath() + "/assets/rpg-scenes.json");
+  const scenes = fs.readFileSync(filePath, "utf-8");
+  // console.log("getting scenes");
+  return JSON.parse(scenes);
 });
 
 // Quit when all windows are closed, except on macOS. There, it's common
