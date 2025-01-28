@@ -2,7 +2,7 @@ import SceneButton from "./scene-button";
 
 type Props = {
   scenes: scene[];
-  createScene: (newScene: string) => void;
+  createScene: () => void;
 };
 
 const ScenePage = ({ scenes, createScene }: Props) => {
